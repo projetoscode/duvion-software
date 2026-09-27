@@ -19,6 +19,8 @@ const VARIANT_CLASS: Record<Variant, string> = {
 interface Props {
   children: ReactNode;
   href?: string;
+  /** Opens `href` in a new tab. */
+  external?: boolean;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   variant?: Variant;
   icon?: boolean;
@@ -34,6 +36,7 @@ interface Props {
 export default function MagneticButton({
   children,
   href,
+  external = false,
   onClick,
   variant = 'primary',
   icon = true,
@@ -78,7 +81,14 @@ export default function MagneticButton({
   return (
     <span ref={wrap} className={cn('will-change-transform', fullWidth ? 'block' : 'inline-block')} data-magnetic>
       {href ? (
-        <TransitionLink href={href} className={classes} onPointerDown={ripple} onClick={onClick} {...rest}>
+        <TransitionLink
+          href={href}
+          className={classes}
+          onPointerDown={ripple}
+          onClick={onClick}
+          {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
+          {...rest}
+        >
           {content}
         </TransitionLink>
       ) : (

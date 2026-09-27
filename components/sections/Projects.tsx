@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import Image from 'next/image';
 import { gsap, sectionTransition } from '@/lib/animations';
 import { PROJECTS } from '@/lib/site';
 import { cn } from '@/lib/utils';
@@ -12,8 +13,7 @@ import Reveal from '@/components/animations/Reveal';
 import MagneticButton from '@/components/animations/MagneticButton';
 import { TransitionLink } from '@/components/animations/PageTransition';
 import SectionTag from '@/components/ui/SectionTag';
-import ProjectArt from '@/components/ui/ProjectArt';
-import { ArrowIcon, ArrowLeftIcon } from '@/components/ui/Icons';
+import { ArrowIcon, ArrowLeftIcon, ExternalIcon } from '@/components/ui/Icons';
 
 export default function Projects() {
   const section = useRef<HTMLElement>(null);
@@ -173,11 +173,14 @@ export default function Projects() {
                   <span aria-hidden="true" className="glass gradient-border absolute inset-0 rounded-[inherit]" />
                   <div className="relative z-[2] flex h-full flex-col p-3 [transform-style:preserve-3d]">
                     <div className="relative aspect-[16/10] overflow-hidden rounded-[20px] [transform:translateZ(30px)]">
-                      <ProjectArt
-                        variant={project.art}
-                        hue={project.hue}
-                        label={`Ilustração do projeto ${project.name}`}
-                        className="h-full w-full transition-transform duration-[1200ms] ease-expo group-hover:scale-110"
+                      <Image
+                        src={project.image}
+                        alt={`Página inicial do site ${project.name}`}
+                        fill
+                        draggable={false}
+                        sizes="(min-width: 1024px) 40vw, (min-width: 640px) 60vw, 90vw"
+                        priority={i < 2}
+                        className="object-cover object-top transition-transform duration-[1200ms] ease-expo group-hover:scale-110"
                       />
                       <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent opacity-70 transition-opacity duration-700 group-hover:opacity-95" />
                       <span
@@ -192,11 +195,23 @@ export default function Projects() {
                       <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-cyan-300/85">{project.category}</p>
                       <h3 className="mt-2 font-display text-xl font-semibold text-white md:text-2xl">{project.name}</h3>
                       <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/60">{project.description}</p>
-                      <TransitionLink href={`/projetos/${project.slug}`} className="link-arrow mt-6 self-start">
-                        Ver projeto
-                        <ArrowIcon className="h-4 w-4" />
-                        <span className="sr-only">: {project.name}</span>
-                      </TransitionLink>
+                      <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3 pt-6">
+                        <TransitionLink href={`/projetos/${project.slug}`} className="link-arrow">
+                          Ver projeto
+                          <ArrowIcon className="h-4 w-4" />
+                          <span className="sr-only">: {project.name}</span>
+                        </TransitionLink>
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium text-white/55 transition-colors hover:text-white"
+                        >
+                          Site ao vivo
+                          <ExternalIcon className="h-3.5 w-3.5" />
+                          <span className="sr-only">: {project.name} (abre em nova aba)</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </TiltCard>

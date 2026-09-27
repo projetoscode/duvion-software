@@ -75,15 +75,13 @@ export const SERVICES: Service[] = [
   },
 ];
 
-export type ProjectArtVariant = 'site' | 'landing' | 'app' | 'system' | 'shop' | 'ai';
-
 export interface Project {
   slug: string;
   name: string;
   category: string;
   description: string;
-  art: ProjectArtVariant;
-  hue: [string, string];
+  image: string;
+  url: string;
   year: string;
   segment: string;
   services: string[];
@@ -95,96 +93,86 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    slug: 'evolux-tecnologia',
-    name: 'Evolux Tecnologia',
-    category: 'Site Institucional',
-    description: 'Presença digital imersiva para uma empresa de tecnologia em plena expansão.',
-    art: 'site',
-    hue: ['#22d3ee', '#3b6cff'],
-    year: '2026',
-    segment: 'Tecnologia B2B',
-    services: ['UX/UI Design', 'Desenvolvimento Web', 'WebGL'],
-    stack: ['Next.js', 'Three.js', 'GSAP'],
-    challenge:
-      'Traduzir um portfólio técnico e denso em uma narrativa clara, capaz de gerar confiança em poucos segundos de navegação.',
-    solution:
-      'Arquitetura de conteúdo orientada a jornadas, hero 3D interativo e microinterações que guiam o visitante até o contato.',
-    delivery: 'Site responsivo, otimizado para performance e SEO, com painel para a equipe atualizar conteúdos.',
-  },
-  {
-    slug: 'nexa-pro',
-    name: 'Nexa Pro',
+    slug: 'pinho-engenharia',
+    name: 'Pinho Engenharia',
     category: 'Landing Page',
-    description: 'Lançamento de produto com narrativa cinematográfica e foco total em conversão.',
-    art: 'landing',
-    hue: ['#8b5cf6', '#d946ef'],
+    description: 'Presença digital de alto padrão para uma construtora que transforma projetos em obras memoráveis.',
+    image: '/projetos/pinho-engenharia.webp',
+    url: 'https://projetoscode.github.io/pinho-engenharia/',
     year: '2026',
-    segment: 'Hardware & Wearables',
-    services: ['Estratégia de conversão', 'Motion Design', 'Desenvolvimento'],
-    stack: ['React', 'GSAP', 'Tailwind CSS'],
-    challenge: 'Apresentar um produto premium em uma única página, mantendo a atenção do início ao fim.',
-    solution: 'Storytelling guiado pelo scroll, blocos de prova social e CTAs posicionados nos momentos de maior intenção.',
-    delivery: 'Landing page de alta performance integrada a ferramentas de análise e automação de marketing.',
+    segment: 'Engenharia & Construção',
+    services: ['UX/UI Design', 'Desenvolvimento Web', 'Motion Design'],
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    challenge:
+      'Transmitir, logo no primeiro contato, a precisão técnica e o acabamento premium que a construtora entrega em cada obra.',
+    solution:
+      'Visual escuro com detalhes dourados, elemento 3D no hero e seções claras para serviços, diferenciais, processo e portfólio de obras.',
+    delivery: 'Landing page responsiva, rápida e com chamadas diretas para orçamento pelo WhatsApp.',
   },
   {
-    slug: 'connect-app',
-    name: 'Connect App',
-    category: 'Aplicativo',
-    description: 'Aplicativo que aproxima pessoas e serviços com uma experiência fluida.',
-    art: 'app',
-    hue: ['#3b6cff', '#22d3ee'],
-    year: '2025',
-    segment: 'Serviços & Comunidade',
-    services: ['Product Design', 'Aplicativo mobile', 'API'],
-    stack: ['React Native', 'TypeScript', 'Node.js'],
-    challenge: 'Criar um app simples o suficiente para qualquer pessoa, sem abrir mão de recursos avançados.',
-    solution: 'Fluxos enxutos, design system próprio e notificações inteligentes baseadas no comportamento do usuário.',
-    delivery: 'Aplicativo iOS e Android publicado, com back-end escalável e painel administrativo.',
-  },
-  {
-    slug: 'orbit-gestao',
-    name: 'Orbit Gestão',
-    category: 'Sistema Web',
-    description: 'Plataforma de gestão que centraliza operações, indicadores e equipes.',
-    art: 'system',
-    hue: ['#22d3ee', '#8b5cf6'],
-    year: '2025',
-    segment: 'Operações & Logística',
-    services: ['Discovery', 'Sistema Web', 'Dashboards'],
-    stack: ['Next.js', 'PostgreSQL', 'Prisma'],
-    challenge: 'Substituir planilhas espalhadas por uma fonte única de verdade para toda a operação.',
-    solution: 'Módulos sob medida, permissões por perfil e dashboards em tempo real com os indicadores do negócio.',
-    delivery: 'Sistema web seguro, com integrações e treinamento para a equipe.',
-  },
-  {
-    slug: 'lumen-store',
-    name: 'Lumen Store',
-    category: 'E-commerce',
-    description: 'Loja online com vitrine envolvente e checkout sem atritos.',
-    art: 'shop',
-    hue: ['#d946ef', '#3b6cff'],
-    year: '2025',
-    segment: 'Varejo & Lifestyle',
-    services: ['E-commerce', 'UX de checkout', 'Integrações'],
-    stack: ['Next.js', 'Stripe', 'Headless CMS'],
-    challenge: 'Aumentar a conversão de uma loja com alto tráfego e muitos abandonos no carrinho.',
-    solution: 'Vitrine rápida, busca inteligente e um checkout em poucas etapas, pensado primeiro para o celular.',
-    delivery: 'E-commerce headless com gestão de catálogo, pagamentos e logística integrados.',
-  },
-  {
-    slug: 'synapse-ia',
-    name: 'Synapse IA',
-    category: 'Inteligência Artificial',
-    description: 'Assistente inteligente que automatiza o atendimento e qualifica leads.',
-    art: 'ai',
-    hue: ['#8b5cf6', '#22d3ee'],
+    slug: 'brothers-barbearia',
+    name: 'Brothers Barbearia',
+    category: 'Landing Page',
+    description: 'Experiência premium para uma barbearia que une estilo, precisão e atitude em cada corte.',
+    image: '/projetos/brothers-barbearia.webp',
+    url: 'https://projetoscode.github.io/brothers-barbearia/',
     year: '2026',
-    segment: 'Atendimento & Vendas',
-    services: ['Automação', 'Integração com IA', 'Chatbots'],
-    stack: ['Python', 'LLMs', 'Next.js'],
-    challenge: 'Responder rapidamente a um volume crescente de contatos sem perder o tom humano da marca.',
-    solution: 'Assistente treinado com a base de conhecimento da empresa, integrado aos canais e ao CRM.',
-    delivery: 'Automação em produção com painel de conversas, métricas e ajustes contínuos.',
+    segment: 'Beleza & Cuidados Masculinos',
+    services: ['Identidade Visual Digital', 'Desenvolvimento Web', 'Animações'],
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    challenge: 'Posicionar a barbearia como premium e facilitar o agendamento para quem chega pelo celular.',
+    solution:
+      'Tipografia elegante, paleta azul-noite com dourado, cards interativos de serviços e galeria que mostra o resultado de cada corte.',
+    delivery: 'Site responsivo com agendamento em um toque pelo WhatsApp e animações suaves ao rolar a página.',
+  },
+  {
+    slug: 'calle',
+    name: 'Calle',
+    category: 'Landing Page',
+    description: 'Vitrine editorial para uma boutique de moda feminina autoral.',
+    image: '/projetos/calle.webp',
+    url: 'https://projetoscode.github.io/calle/',
+    year: '2026',
+    segment: 'Moda & Varejo',
+    services: ['Direção de Arte', 'Desenvolvimento Web', 'Motion Design'],
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    challenge: 'Levar para o digital a sofisticação da boutique e transformar a admiração pelas peças em vendas.',
+    solution:
+      'Estética de revista de moda, com vídeo em preto e branco, tipografia serifada e uma narrativa que acompanha a história de cada cliente.',
+    delivery: 'Landing page imersiva com compra direta pelo WhatsApp, pensada primeiro para o celular.',
+  },
+  {
+    slug: 'elivelton-polimentos',
+    name: 'Elivelton Polimentos',
+    category: 'Landing Page',
+    description: 'Estúdio de estética automotiva apresentado com o mesmo cuidado de ourives aplicado a cada carro.',
+    image: '/projetos/elivelton-polimentos.webp',
+    url: 'https://projetoscode.github.io/elivelton-polimentos/',
+    year: '2026',
+    segment: 'Estética Automotiva',
+    services: ['UX/UI Design', 'Desenvolvimento Web', 'Vídeo & Galeria'],
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    challenge:
+      'Mostrar a qualidade de serviços técnicos como PPF, coating cerâmico e martelinho de ouro para quem não conhece o processo.',
+    solution:
+      'Hero em vídeo, galeria de antes e depois, reels do dia a dia do estúdio e uma seção dedicada aos cursos de formação profissional.',
+    delivery: 'Landing page responsiva com contato direto pelo WhatsApp e conteúdo que valoriza cada trabalho entregue.',
+  },
+  {
+    slug: 'nutritiva',
+    name: 'Nutritiva',
+    category: 'Landing Page',
+    description: 'Loja de produtos naturais e suplementos com vitrine clara e pedido rápido.',
+    image: '/projetos/nutritiva.webp',
+    url: 'https://projetoscode.github.io/nutritiva-site/',
+    year: '2026',
+    segment: 'Saúde & Bem-estar',
+    services: ['UX/UI Design', 'Desenvolvimento Web', 'SEO Local'],
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    challenge: 'Organizar um catálogo amplo de suplementos e produtos naturais de forma simples para toda a família.',
+    solution:
+      'Vitrine com fotos reais dos produtos, categorias como imunidade, performance, emagrecimento e linha kids, e visual leve em tons de verde.',
+    delivery: 'Site responsivo, otimizado para buscas em Campo Mourão, com pedidos direto pelo WhatsApp.',
   },
 ];
 

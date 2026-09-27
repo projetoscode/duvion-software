@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { PROJECTS } from '@/lib/site';
 import KineticText from '@/components/animations/KineticText';
@@ -7,7 +8,6 @@ import TiltCard from '@/components/animations/TiltCard';
 import MagneticButton from '@/components/animations/MagneticButton';
 import { TransitionLink } from '@/components/animations/PageTransition';
 import SectionTag from '@/components/ui/SectionTag';
-import ProjectArt from '@/components/ui/ProjectArt';
 import { ArrowIcon, ArrowLeftIcon } from '@/components/ui/Icons';
 
 interface Params {
@@ -63,6 +63,11 @@ export default async function ProjectPage({ params }: Params) {
             <Reveal delay={0.15}>
               <p className="mt-6 max-w-lg text-lg text-white/70">{project.description}</p>
             </Reveal>
+            <Reveal delay={0.2} className="mt-8">
+              <MagneticButton href={project.url} external>
+                Visitar o site
+              </MagneticButton>
+            </Reveal>
           </div>
 
           <Reveal delay={0.2} as="dl" className="grid grid-cols-2 gap-6 text-sm">
@@ -84,7 +89,16 @@ export default async function ProjectPage({ params }: Params) {
           <TiltCard max={4} scale={1.01} className="rounded-[32px]" data-cursor="Duvion">
             <span aria-hidden="true" className="glass gradient-border absolute inset-0 rounded-[inherit]" />
             <div className="relative z-[2] overflow-hidden rounded-[28px] p-2 md:p-3">
-              <ProjectArt variant={project.art} hue={project.hue} label={`Ilustração do projeto ${project.name}`} className="aspect-[16/9] w-full rounded-[24px]" />
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[24px]">
+                <Image
+                  src={project.image}
+                  alt={`Página inicial do site ${project.name}`}
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 1200px, 95vw"
+                  className="object-cover object-top"
+                />
+              </div>
             </div>
           </TiltCard>
         </Reveal>
