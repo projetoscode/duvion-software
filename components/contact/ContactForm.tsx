@@ -44,8 +44,9 @@ export default function ContactForm() {
     }
 
     const serviceLabel = SERVICES.find((s) => s.id === service)?.title;
-    const subject = `Novo projeto${serviceLabel ? ` — ${serviceLabel}` : ''} | ${name}`;
     const body = [
+      `Olá! Vim pelo site da Duvion Software.`,
+      '',
       `Nome: ${name}`,
       `E-mail: ${email}`,
       company ? `Empresa: ${company}` : null,
@@ -56,7 +57,7 @@ export default function ContactForm() {
       .filter((line): line is string => line !== null)
       .join('\n');
 
-    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(`${SITE.whatsapp.href}?text=${encodeURIComponent(body)}`, '_blank', 'noopener,noreferrer');
     setSent(true);
   };
 
@@ -157,7 +158,7 @@ export default function ContactForm() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <MagneticButton type="submit">Enviar mensagem</MagneticButton>
         <p id="form-status" role="status" aria-live="polite" className="text-sm text-white/55">
-          {sent ? 'Abrimos seu app de e-mail com a mensagem pronta. É só enviar!' : `Ou escreva para ${SITE.email}`}
+          {sent ? 'Abrimos o WhatsApp com a mensagem pronta. É só enviar!' : `Ou chame no WhatsApp: ${SITE.whatsapp.display}`}
         </p>
       </div>
     </form>

@@ -186,8 +186,8 @@ export default function Navbar() {
                 Fale conosco
               </MagneticButton>
               <div className="flex items-center justify-between text-sm text-white/50">
-                <a href={`mailto:${SITE.email}`} className="hover:text-white">
-                  {SITE.email}
+                <a href={SITE.whatsapp.href} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  {SITE.whatsapp.display}
                 </a>
                 <div className="flex gap-3">
                   {SITE.social.map((social) => (

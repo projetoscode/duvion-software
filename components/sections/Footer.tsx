@@ -43,7 +43,9 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-3 border-t border-white/[0.06] pt-6 text-xs text-white/40 sm:flex-row sm:justify-between">
           <p>© 2026 Duvion Software. Todos os direitos reservados.</p>
-          <p>{SITE.tagline}</p>
+          <p>
+            Site desenvolvido por <span className="text-white/65">{SITE.author}</span> — Duvion Software
+          </p>
         </div>
       </div>
     </footer>

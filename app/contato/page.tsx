@@ -39,10 +39,10 @@ export default function ContactPage() {
 
           <Reveal delay={0.3} as="dl" className="mt-12 space-y-6 text-sm">
             <div>
-              <dt className="text-xs uppercase tracking-[0.25em] text-white/40">E-mail</dt>
+              <dt className="text-xs uppercase tracking-[0.25em] text-white/40">WhatsApp</dt>
               <dd className="mt-1.5">
-                <a href={`mailto:${SITE.email}`} className="text-lg text-white transition-colors hover:text-cyan-300">
-                  {SITE.email}
+                <a href={SITE.whatsapp.href} target="_blank" rel="noopener noreferrer" className="text-lg text-white transition-colors hover:text-cyan-300">
+                  {SITE.whatsapp.display}
                 </a>
               </dd>
             </div>

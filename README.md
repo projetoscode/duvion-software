@@ -23,9 +23,9 @@ lib/                    site.ts (conteúdo), three.ts (geometria/tiers), animati
 
 ## Onde editar o conteúdo
 
-Todo o texto, serviços, projetos, e-mail e redes sociais estão em `lib/site.ts`.
-Os projetos são exemplos: substitua pelos cases reais. O formulário de contato abre o app de
-e-mail do visitante com a mensagem pronta para `SITE.email`.
+Todo o texto, serviços, projetos, WhatsApp e redes sociais estão em `lib/site.ts`.
+Os projetos são exemplos: substitua pelos cases reais. O formulário de contato abre o WhatsApp
+com a mensagem pronta para `SITE.whatsapp`.
 
 ## Performance
 

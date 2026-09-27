@@ -4,13 +4,16 @@ export const SITE = {
   tagline: 'Tecnologia que transforma.',
   description:
     'Na Duvion Software, desenvolvemos soluções digitais personalizadas que conectam marcas, pessoas e resultados. Sites, sistemas, aplicativos e muito mais.',
-  email: 'contato@duvionsoftware.com',
+  whatsapp: {
+    display: '(44) 99840-0729',
+    href: 'https://wa.me/5544998400729',
+  },
+  author: 'Eduardo de P. Campos',
   location: 'Brasil · Atendimento remoto em todo o país',
   hours: 'Seg. a Sex. · 9h às 18h',
   social: [
-    { label: 'Instagram', href: 'https://www.instagram.com/duvionsoftware', icon: 'instagram' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/duvionsoftware', icon: 'linkedin' },
-    { label: 'GitHub', href: 'https://github.com/duvionsoftware', icon: 'github' },
+    { label: 'Instagram', href: 'https://www.instagram.com/duduu_camposs/', icon: 'instagram' },
+    { label: 'WhatsApp', href: 'https://wa.me/5544998400729', icon: 'whatsapp' },
   ],
 } as const;
 
