@@ -30,7 +30,10 @@ com a mensagem pronta para `SITE.whatsapp`.
 ## Performance
 
 - Three.js carrega só no cliente (`next/dynamic`), fora do bundle inicial.
-- Três níveis de qualidade (`lib/three.ts → TIER_SETTINGS`): partículas, objetos, transmissão
-  de vidro, bloom e DPR mudam conforme o dispositivo; `PerformanceMonitor` reduz o DPR se o FPS cair.
-- As cenas de "Como trabalhamos" e do CTA só montam perto da viewport e pausam fora dela.
+- Três níveis de qualidade (`lib/three.ts → TIER_SETTINGS`), escolhidos pela tela, CPU, memória e
+  pela GPU real (integradas e software ficam no nível médio/baixo); `PerformanceMonitor` reduz o DPR se o FPS cair.
+- O canvas de fundo só renderiza enquanto o hero está na tela; abaixo dele, o último quadro fica congelado.
+- As cenas de "Como trabalhamos" e do CTA montam e pré-compilam quando o navegador está ocioso,
+  e pausam fora da tela. Nenhum shader é compilado durante a rolagem.
+- Sem `backdrop-filter`, sem `filter: blur` animado e sem `clip-path` animado: as transições usam só transform.
 - `prefers-reduced-motion`: sem Lenis, sem cursor customizado, animações mínimas e cena 3D quase parada.

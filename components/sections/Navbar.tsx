@@ -90,7 +90,7 @@ export default function Navbar() {
         onAnimationComplete={() => setEntered(true)}
         className={cn(
           'fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500',
-          scrolled && !open ? 'border-b border-white/[0.07] bg-ink-950/55 backdrop-blur-xl' : 'border-b border-transparent',
+          scrolled && !open ? 'border-b border-white/[0.07] bg-ink-950/75 backdrop-blur-md' : 'border-b border-transparent',
         )}
       >
         <div className="container-x flex h-[72px] items-center justify-between md:h-20">
@@ -130,7 +130,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-            className="flex items-center gap-2.5 rounded-full border border-violet-400/40 bg-ink-900/60 py-2 pl-4 pr-3 text-[13px] text-white/90 backdrop-blur-md md:hidden"
+            className="flex items-center gap-2.5 rounded-full border border-violet-400/40 bg-ink-900/80 py-2 pl-4 pr-3 text-[13px] text-white/90 md:hidden"
           >
             {open ? 'Fechar' : 'Menu'}
             <MenuIcon open={open} className="h-5 w-5" />
@@ -145,7 +145,7 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação"
-            className="fixed inset-0 z-40 flex flex-col bg-ink-950/95 px-6 pb-10 pt-28 backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-ink-950/[0.97] px-6 pb-10 pt-28 md:hidden"
             initial={{ clipPath: 'circle(0% at 88% 5%)' }}
             animate={{ clipPath: 'circle(150% at 88% 5%)' }}
             exit={{ clipPath: 'circle(0% at 88% 5%)' }}
@@ -157,8 +157,8 @@ export default function Navbar() {
                 {NAV_LINKS.map((link, index) => (
                   <motion.li
                     key={link.href}
-                    initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.7, delay: reduced ? 0 : 0.2 + index * 0.06, ease: [0.16, 1, 0.3, 1] }}
                   >

@@ -37,8 +37,8 @@ export default function Hero() {
 
     gsap.fromTo(
       fades,
-      { opacity: 0, y: 30, filter: 'blur(10px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'expo.out', stagger: 0.12, delay: INTRO_DELAY + 0.55, clearProps: 'filter' },
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.12, delay: INTRO_DELAY + 0.55 },
     );
 
     // Copy leaves with depth: rises, shrinks slightly and blurs as the 3D mark takes over.
@@ -46,7 +46,6 @@ export default function Hero() {
       yPercent: -14,
       scale: 0.95,
       opacity: 0,
-      filter: 'blur(10px)',
       ease: 'none',
       scrollTrigger: { trigger: root, start: 'top top', end: 'bottom 25%', scrub: 0.5 },
     });
@@ -62,7 +61,7 @@ export default function Hero() {
   return (
     <section id="inicio" ref={section} aria-labelledby="hero-title" className="relative flex min-h-[100svh] items-center overflow-hidden">
       <div className="container-x relative w-full pb-20 pt-[46svh] md:pb-24 md:pt-32 lg:pt-28">
-        <div data-hero-content className="max-w-xl will-change-transform md:max-w-[56%] lg:max-w-[600px]">
+        <div data-hero-content className="max-w-xl md:max-w-[56%] lg:max-w-[600px]">
           <p data-hero-fade className="tag mb-7">
             Tecnologia <span className="text-fuchsia-300/80">+</span> Design <span className="text-fuchsia-300/80">+</span> Resultados
           </p>

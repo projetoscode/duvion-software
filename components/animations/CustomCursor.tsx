@@ -5,7 +5,7 @@ import { gsap } from '@/lib/animations';
 import { useFinePointer, useReducedMotion } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
 
-const TRAIL = 5;
+const TRAIL = 3;
 const INTERACTIVE = 'a, button, [role="button"], input, textarea, select, label, [data-cursor]';
 
 /**

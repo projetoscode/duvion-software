@@ -66,11 +66,10 @@ export function Fragments({ count = 7 }: { count?: number }) {
 
   const material = useMemo(
     () =>
-      new THREE.MeshPhysicalMaterial({
+      new THREE.MeshStandardMaterial({
         color: '#6fb6ff',
         metalness: 0.2,
         roughness: 0.05,
-        clearcoat: 1,
         emissive: new THREE.Color('#2a4dff'),
         emissiveIntensity: 0.5,
         flatShading: true,

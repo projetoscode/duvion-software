@@ -2,10 +2,10 @@
 
 import { Suspense, useEffect, useMemo, type MutableRefObject } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sparkles, Stars } from '@react-three/drei';
+import { Preload, Sparkles, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import { sceneState } from '@/lib/store';
-import { SIMPLEX_NOISE_GLSL, type Tier } from '@/lib/three';
+import { CANVAS_RESIZE, SIMPLEX_NOISE_GLSL, tuneRenderer, type Tier } from '@/lib/three';
 import { useMouseParallax } from '@/hooks/useMouseParallax';
 
 const terrainVertex = /* glsl */ `
@@ -123,20 +123,23 @@ interface Props {
 
 /** Procedural mountain range under a starfield — the CTA's 3D backdrop. */
 export default function CTAScene({ active, tier, progressRef }: Props) {
-  const segments = tier === 'high' ? 180 : tier === 'mid' ? 120 : 70;
+  const segments = tier === 'high' ? 140 : tier === 'mid' ? 100 : 60;
 
   return (
     <Canvas
       frameloop={active ? 'always' : 'never'}
-      dpr={[1, tier === 'high' ? 1.5 : 1.2]}
+      dpr={[1, tier === 'low' ? 1 : 1.25]}
       camera={{ position: [0, 1.6, 6], fov: 50 }}
       gl={{ alpha: true, antialias: tier !== 'low', powerPreference: 'high-performance' }}
+      resize={CANVAS_RESIZE}
+      onCreated={({ gl }) => tuneRenderer(gl)}
     >
       <Suspense fallback={null}>
         <Terrain segments={segments} />
-        <Stars radius={30} depth={20} count={tier === 'low' ? 400 : 1200} factor={2.5} saturation={0.6} fade speed={0.6} />
+        <Stars radius={30} depth={20} count={tier === 'low' ? 300 : 700} factor={2.5} saturation={0.6} fade speed={0.6} />
         <Sparkles count={tier === 'low' ? 20 : 60} scale={[14, 3, 6]} position={[0, 1.2, -4]} size={3} speed={0.35} color="#a78bfa" opacity={0.8} />
         <CameraRig progressRef={progressRef} />
+        <Preload all />
       </Suspense>
     </Canvas>
   );

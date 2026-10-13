@@ -24,15 +24,13 @@ export default function Reveal({ children, as: Tag = 'div', delay = 0, y = 40, .
       }
       gsap.fromTo(
         el,
-        { opacity: 0, y, filter: 'blur(8px)' },
+        { opacity: 0, y },
         {
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
           duration: 1.1,
           delay,
           ease: 'expo.out',
-          clearProps: 'filter',
           scrollTrigger: { trigger: el, start: 'top 90%', once: true },
         },
       );

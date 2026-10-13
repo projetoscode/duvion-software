@@ -37,7 +37,7 @@ export default function BackgroundCanvas() {
       <div className="bg-fallback absolute inset-0" />
       {webgl && tier && (
         <div className={cn('absolute inset-0 transition-opacity duration-[1600ms] ease-out', ready ? 'opacity-100' : 'opacity-0')}>
-          <HeroScene key={tier} settings={TIER_SETTINGS[tier]} onReady={() => setReady(true)} />
+          <HeroScene key={tier} settings={TIER_SETTINGS[tier]} pathname={pathname} onReady={() => setReady(true)} />
         </div>
       )}
       {webgl === false && pathname === '/' && (

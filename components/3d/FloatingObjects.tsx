@@ -70,23 +70,19 @@ function createGeometries(): Record<Kind, THREE.BufferGeometry> {
 
 function createMaterials(): Record<MaterialKind, THREE.Material> {
   return {
-    glass: new THREE.MeshPhysicalMaterial({
+    glass: new THREE.MeshStandardMaterial({
       color: '#3aa8ff',
       metalness: 0.1,
       roughness: 0.06,
-      clearcoat: 1,
-      iridescence: 0.5,
       emissive: new THREE.Color('#0d5bff'),
       emissiveIntensity: 0.35,
       envMapIntensity: 2.2,
       flatShading: true,
     }),
-    violet: new THREE.MeshPhysicalMaterial({
+    violet: new THREE.MeshStandardMaterial({
       color: '#8b5cf6',
       metalness: 0.15,
       roughness: 0.08,
-      clearcoat: 1,
-      iridescence: 0.6,
       emissive: new THREE.Color('#6d28d9'),
       emissiveIntensity: 0.4,
       envMapIntensity: 2,

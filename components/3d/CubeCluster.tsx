@@ -34,12 +34,10 @@ export default function CubeCluster({ progressRef }: { progressRef: MutableRefOb
   const geometry = useMemo(() => new THREE.BoxGeometry(0.6, 0.6, 0.6), []);
   const material = useMemo(
     () =>
-      new THREE.MeshPhysicalMaterial({
+      new THREE.MeshStandardMaterial({
         color: '#2f5bff',
         metalness: 0.2,
         roughness: 0.08,
-        clearcoat: 1,
-        iridescence: 0.6,
         transparent: true,
         opacity: 0.5,
         emissive: new THREE.Color('#2b3cff'),

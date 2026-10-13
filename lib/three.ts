@@ -18,41 +18,72 @@ export interface TierSettings {
   rockDetail: number;
 }
 
+// The glow comes from additive sprites instead of a bloom pass, and glass is faked with
+// clearcoat instead of transmission: both used to double the cost of every frame.
 export const TIER_SETTINGS: Record<Tier, TierSettings> = {
   high: {
-    dpr: [1, 1.75],
-    particles: 1400,
-    floating: 16,
-    postprocessing: true,
-    transmission: true,
-    antialias: false,
-    curveSegments: 48,
-    bevelSegments: 5,
-    rockDetail: 3,
-  },
-  mid: {
     dpr: [1, 1.5],
-    particles: 800,
-    floating: 10,
+    particles: 900,
+    floating: 12,
     postprocessing: false,
     transmission: false,
     antialias: true,
-    curveSegments: 32,
+    curveSegments: 40,
+    bevelSegments: 4,
+    rockDetail: 2,
+  },
+  mid: {
+    dpr: [1, 1.25],
+    particles: 550,
+    floating: 9,
+    postprocessing: false,
+    transmission: false,
+    antialias: true,
+    curveSegments: 28,
     bevelSegments: 3,
     rockDetail: 2,
   },
   low: {
-    dpr: [1, 1.25],
-    particles: 360,
-    floating: 6,
+    dpr: [1, 1],
+    particles: 260,
+    floating: 5,
     postprocessing: false,
     transmission: false,
-    antialias: true,
-    curveSegments: 20,
+    antialias: false,
+    curveSegments: 18,
     bevelSegments: 2,
     rockDetail: 1,
   },
 };
+
+/**
+ * Canvas sizing: measure layout size (offsetWidth/Height), not the transformed rect, and
+ * skip re-measuring on scroll. Scroll-scrubbed scale/rotate on a parent section otherwise
+ * looks like a resize every frame and makes the renderer reallocate its buffers.
+ */
+export const CANVAS_RESIZE = { scroll: false, offsetSize: true, debounce: { scroll: 0, resize: 150 } };
+
+/**
+ * Production renderer tweaks. Checking shader errors forces a synchronous wait on every
+ * compile (getProgramInfoLog), which stalls the main thread when a scene first draws.
+ */
+export function tuneRenderer(gl: THREE.WebGLRenderer) {
+  gl.debug.checkShaderErrors = process.env.NODE_ENV !== 'production';
+}
+
+/** Reads the GPU name so integrated / software renderers get a lighter scene. */
+function gpuClass(): 'software' | 'integrated' | 'dedicated' {
+  try {
+    const gl = document.createElement('canvas').getContext('webgl');
+    const ext = gl?.getExtension('WEBGL_debug_renderer_info');
+    const renderer = ext && gl ? String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)) : '';
+    if (/swiftshader|llvmpipe|software|basic render/i.test(renderer)) return 'software';
+    if (/intel|uhd|iris|mali|adreno|powervr|vivante|videocore/i.test(renderer)) return 'integrated';
+  } catch {
+    // Unknown GPU: fall back to the other heuristics.
+  }
+  return 'dedicated';
+}
 
 export function detectTier(): Tier {
   if (typeof window === 'undefined') return 'mid';
@@ -60,9 +91,10 @@ export function detectTier(): Tier {
   const coarse = window.matchMedia('(pointer: coarse)').matches;
   const cores = navigator.hardwareConcurrency ?? 4;
   const memory = (navigator as Navigator & { deviceMemory?: number }).deviceMemory ?? 8;
+  const gpu = gpuClass();
 
-  if (width < 768 || cores <= 2 || memory <= 2) return 'low';
-  if (width < 1200 || coarse || cores <= 4 || memory <= 4) return 'mid';
+  if (width < 768 || cores <= 2 || memory <= 2 || gpu === 'software') return 'low';
+  if (width < 1200 || coarse || cores <= 4 || memory <= 4 || gpu === 'integrated') return 'mid';
   return 'high';
 }
 

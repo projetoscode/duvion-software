@@ -2,8 +2,8 @@
 
 import { Suspense, type MutableRefObject } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Sparkles } from '@react-three/drei';
-import type { Tier } from '@/lib/three';
+import { Preload, Sparkles } from '@react-three/drei';
+import { CANVAS_RESIZE, tuneRenderer, type Tier } from '@/lib/three';
 import SceneEnvironment from './SceneEnvironment';
 import CubeCluster from './CubeCluster';
 
@@ -17,9 +17,11 @@ export default function ProcessScene({ active, tier, progressRef }: Props) {
   return (
     <Canvas
       frameloop={active ? 'always' : 'never'}
-      dpr={[1, tier === 'high' ? 1.6 : 1.25]}
+      dpr={[1, tier === 'low' ? 1 : 1.25]}
       camera={{ position: [0, 0, 7.5], fov: 35 }}
       gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+      resize={CANVAS_RESIZE}
+      onCreated={({ gl }) => tuneRenderer(gl)}
     >
       <Suspense fallback={null}>
         <SceneEnvironment />
@@ -27,6 +29,7 @@ export default function ProcessScene({ active, tier, progressRef }: Props) {
         <pointLight position={[3, 3, 4]} color="#38d4ff" intensity={20} decay={1.5} />
         <pointLight position={[-3, -2, 2]} color="#a855f7" intensity={20} decay={1.5} />
         <CubeCluster progressRef={progressRef} />
+        <Preload all />
         <Sparkles count={tier === 'low' ? 18 : 45} scale={[5, 4, 3]} size={2.2} speed={0.3} color="#7dd3fc" opacity={0.7} />
       </Suspense>
     </Canvas>

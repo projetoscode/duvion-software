@@ -41,8 +41,6 @@ export default function DuvionLogo3D({ settings }: Props) {
       roughness: 0.1,
       clearcoat: 1,
       clearcoatRoughness: 0.05,
-      iridescence: 0.7,
-      iridescenceIOR: 1.35,
       envMapIntensity: 1.8,
       transparent: true,
     };

@@ -79,7 +79,7 @@ export default function MagneticButton({
   );
 
   return (
-    <span ref={wrap} className={cn('will-change-transform', fullWidth ? 'block' : 'inline-block')} data-magnetic>
+    <span ref={wrap} className={fullWidth ? 'block' : 'inline-block'} data-magnetic>
       {href ? (
         <TransitionLink
           href={href}

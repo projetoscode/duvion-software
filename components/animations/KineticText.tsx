@@ -35,18 +35,16 @@ export default function KineticText({ as: Tag = 'h2', id, lines, className, trig
       }
       gsap.fromTo(
         words,
-        { opacity: 0, yPercent: 70, rotateX: -55, scale: 0.9, filter: 'blur(14px)', transformPerspective: 800, transformOrigin: '50% 100%' },
+        { opacity: 0, yPercent: 70, rotateX: -55, scale: 0.9, transformPerspective: 800, transformOrigin: '50% 100%' },
         {
           opacity: 1,
           yPercent: 0,
           rotateX: 0,
           scale: 1,
-          filter: 'blur(0px)',
           duration: 1.3,
           ease: 'expo.out',
           stagger,
           delay,
-          clearProps: 'filter',
           scrollTrigger: trigger === 'scroll' ? { trigger: root, start: 'top 85%', once: true } : undefined,
         },
       );
@@ -62,7 +60,7 @@ export default function KineticText({ as: Tag = 'h2', id, lines, className, trig
         <span key={lineIndex} className="block">
           {line.map((word, wordIndex) => (
             <Fragment key={wordIndex}>
-              <span data-kinetic-word className={cn('inline-block will-change-transform', word.gradient && 'text-gradient pb-[0.1em]')}>
+              <span data-kinetic-word className={cn('inline-block', word.gradient && 'text-gradient pb-[0.1em]')}>
                 {word.text}
               </span>
               {wordIndex < line.length - 1 ? ' ' : null}

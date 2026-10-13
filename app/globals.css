@@ -74,11 +74,11 @@ html.lenis body {
     color: transparent;
   }
 
+  /* Frosted look without backdrop-filter: blurring the live WebGL canvas behind dozens of
+     cards every frame was the main cause of scroll jank. A tinted gradient reads the same. */
   .glass {
-    background: rgba(255, 255, 255, 0.03);
+    background: linear-gradient(160deg, rgba(22, 28, 64, 0.62), rgba(9, 11, 28, 0.72));
     border: 1px solid rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    backdrop-filter: blur(18px) saturate(140%);
     box-shadow:
       0 20px 60px -30px rgba(59, 108, 255, 0.45),
       inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -115,8 +115,6 @@ html.lenis body {
     text-transform: uppercase;
     letter-spacing: 0.32em;
     color: rgba(165, 243, 252, 0.9);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
   }
 
   .section-panel {
@@ -171,8 +169,6 @@ html.lenis body {
     color: #fff;
     border: 1px solid rgba(139, 92, 246, 0.5);
     background: rgba(10, 12, 30, 0.45);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
   }
   .btn-outline:hover {
     border-color: rgba(34, 211, 238, 0.7);
@@ -290,11 +286,6 @@ html.lenis body {
     opacity: 0.3;
   }
 
-  .project-track {
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 2.5%, #000 97.5%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 2.5%, #000 97.5%, transparent);
-  }
-
   .project-slide {
     flex: 0 0 88%;
   }
@@ -399,6 +390,13 @@ html.js .page-transition[data-intro] {
   clip-path: inset(0% 0% 0% 0%);
 }
 
+/* Sections whose scale is scrubbed by scroll. Without will-change, Chrome re-rasterizes
+   them at every new scale; with it, the existing texture is reused. Kept to these few. */
+[data-panel],
+[data-hero-content] {
+  will-change: transform;
+}
+
 /* Elements animated in by JS start hidden (only when JS is running). */
 html.js [data-kinetic-word],
 html.js [data-reveal],
@@ -465,8 +463,6 @@ html.has-custom-cursor * {
   height: 64px;
   border-color: rgba(139, 92, 246, 0.8);
   background: rgba(139, 92, 246, 0.1);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
 }
 .cursor-ring.has-label {
   width: 78px;
@@ -485,7 +481,6 @@ html.has-custom-cursor * {
   height: 380px;
   border-radius: 9999px;
   background: radial-gradient(circle, rgba(59, 108, 255, 0.12), transparent 65%);
-  mix-blend-mode: screen;
 }
 
 /* Reduced motion: show everything immediately and calm transitions down. */

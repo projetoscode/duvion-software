@@ -158,7 +158,7 @@ export default function Projects() {
                 drag.current.moved = false;
               }
             }}
-            className="project-track no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 py-8 focus-visible:outline-offset-[-2px] md:-mx-8 md:scroll-px-8 md:px-8 lg:-mx-12 lg:scroll-px-12 lg:px-12"
+            className="no-scrollbar -mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-5 px-5 py-8 focus-visible:outline-offset-[-2px] md:-mx-8 md:scroll-px-8 md:px-8 lg:-mx-12 lg:scroll-px-12 lg:px-12"
           >
             {PROJECTS.map((project, i) => (
               <article
@@ -187,7 +187,7 @@ export default function Projects() {
                         aria-hidden="true"
                         className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-transparent to-fuchsia-500/0 mix-blend-screen transition-all duration-700 group-hover:from-cyan-400/25 group-hover:to-fuchsia-500/30"
                       />
-                      <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-ink-950/50 px-2.5 py-1 text-[10px] tracking-[0.2em] text-white/70 backdrop-blur-md">
+                      <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-ink-950/70 px-2.5 py-1 text-[10px] tracking-[0.2em] text-white/70">
                         {project.year}
                       </span>
                     </div>

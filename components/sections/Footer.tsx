@@ -5,7 +5,7 @@ import { SocialIcon } from '@/components/ui/Icons';
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.07] bg-ink-950/80 backdrop-blur-sm">
+    <footer className="relative border-t border-white/[0.07] bg-ink-950/90">
       <div className="container-x py-12">
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <TransitionLink href="/#inicio" aria-label="Duvion Software — página inicial" className="self-start rounded-md">

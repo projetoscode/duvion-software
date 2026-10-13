@@ -9,6 +9,8 @@ import { useMouseParallax } from '@/hooks/useMouseParallax';
 import DuvionLogo3D from './DuvionLogo3D';
 import { Fragments, Glows, OrbitRings, Rock } from './LogoAccents';
 
+const GLOW_INTENSITY = 8;
+
 /**
  * Positions the hero composition for each breakpoint and drives it from
  * scroll + pointer: as the hero leaves, the mark grows, spins, slides to
@@ -17,6 +19,7 @@ import { Fragments, Glows, OrbitRings, Rock } from './LogoAccents';
 export default function HeroRig({ settings }: { settings: TierSettings }) {
   const root = useRef<THREE.Group>(null);
   const logo = useRef<THREE.Group>(null);
+  const glow = useRef<THREE.PointLight>(null);
   const materials = useRef<THREE.Material[] | null>(null);
   const visibility = useRef(0);
   const mouse = useMouseParallax(2.2);
@@ -51,6 +54,9 @@ export default function HeroRig({ settings }: { settings: TierSettings }) {
     const alpha = visibility.current * (1 - THREE.MathUtils.smoothstep(p, 0.3, 1));
 
     group.visible = alpha > 0.01;
+    // The glow light lives outside the group and fades by intensity: hiding a light changes
+    // the scene's light count, which would recompile every lit material mid-scroll.
+    if (glow.current) glow.current.intensity = GLOW_INTENSITY * alpha;
     if (!group.visible) return;
 
     materials.current.forEach((m) => {
@@ -64,6 +70,7 @@ export default function HeroRig({ settings }: { settings: TierSettings }) {
       layout.y + p * height * 0.3 + mouse.current.y * 0.12,
       p * 1.2,
     );
+    glow.current?.position.set(group.position.x + 0.3 * scale, group.position.y, group.position.z - 1.2 * scale);
 
     mark.position.y = Math.sin(t * 0.9) * 0.1;
     mark.rotation.set(
@@ -74,15 +81,17 @@ export default function HeroRig({ settings }: { settings: TierSettings }) {
   });
 
   return (
-    <group ref={root}>
-      <Glows />
-      <group ref={logo}>
-        <DuvionLogo3D settings={settings} />
-        <pointLight position={[0.3, 0, -1.2]} color="#7c3aed" intensity={8} distance={6} decay={1.5} />
-        <OrbitRings />
-        <Fragments count={settings.floating > 8 ? 8 : 5} />
+    <>
+      <pointLight ref={glow} color="#7c3aed" intensity={0} distance={6} decay={1.5} />
+      <group ref={root}>
+        <Glows />
+        <group ref={logo}>
+          <DuvionLogo3D settings={settings} />
+          <OrbitRings />
+          <Fragments count={settings.floating > 8 ? 8 : 5} />
+        </group>
+        <Rock detail={settings.rockDetail} />
       </group>
-      <Rock detail={settings.rockDetail} />
-    </group>
+    </>
   );
 }

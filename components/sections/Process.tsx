@@ -53,8 +53,8 @@ export default function Process() {
     });
     gsap.fromTo(
       steps,
-      { opacity: 0, x: 50, filter: 'blur(8px)' },
-      { opacity: 1, x: 0, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out', stagger: 0.12, clearProps: 'filter', scrollTrigger: { trigger: list, start: 'top 85%', once: true } },
+      { opacity: 0, x: 50 },
+      { opacity: 1, x: 0, duration: 1.1, ease: 'expo.out', stagger: 0.12, scrollTrigger: { trigger: list, start: 'top 85%', once: true } },
     );
   });
 
