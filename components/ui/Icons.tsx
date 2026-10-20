@@ -17,28 +17,25 @@ const SERVICE_PATHS: Record<ServiceIconName, ReactNode> = {
       <path d="M6.5 16.5c-1.5.5-2.5 2-3 4.5 2.5-.5 4-1.5 4.5-3" />
     </>
   ),
-  code: <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />,
-  phone: (
+  // Automation flow: a trigger node branching into two actions.
+  flow: (
     <>
-      <rect x="6.5" y="2.5" width="11" height="19" rx="2.5" />
-      <path d="M11 18.5h2" />
-    </>
-  ),
-  brain: (
-    <>
-      <path d="M12 5.5A3 3 0 0 0 6.2 6.6 3 3 0 0 0 4 10a3 3 0 0 0 1 2.2A3.2 3.2 0 0 0 6 17a3 3 0 0 0 6 .5z" />
-      <path d="M12 5.5a3 3 0 0 1 5.8 1.1A3 3 0 0 1 20 10a3 3 0 0 1-1 2.2 3.2 3.2 0 0 1-1 4.8 3 3 0 0 1-6 .5" />
-      <path d="M8.5 9.5h1.5M14 12h1.5M8.5 14.5h1.5M12 5.5V18" />
-    </>
-  ),
-  cart: (
-    <>
-      <path d="M3 4h2.5l2.2 10.2a1.5 1.5 0 0 0 1.5 1.2h7.9a1.5 1.5 0 0 0 1.4-1.1L20.5 8H6.4" />
-      <circle cx="10" cy="19.5" r="1.2" />
-      <circle cx="17" cy="19.5" r="1.2" />
+      <rect x="3" y="3.5" width="6" height="6" rx="1.5" />
+      <rect x="15" y="3.5" width="6" height="6" rx="1.5" />
+      <rect x="15" y="14.5" width="6" height="6" rx="1.5" />
+      <path d="M9 6.5h6M12 6.5v11h3" />
+      <path d="M5 13.5l1.5 1.5L5 16.5" />
     </>
   ),
 };
+
+export function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  );
+}
 
 /** Line icon stroked with the brand gradient. */
 export function ServiceIcon({ name, className }: { name: ServiceIconName; className?: string }) {
@@ -56,9 +53,9 @@ export function ServiceIcon({ name, className }: { name: ServiceIconName; classN
     >
       <defs>
         <linearGradient id={id} x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#22d3ee" />
-          <stop offset="0.55" stopColor="#6366f1" />
-          <stop offset="1" stopColor="#d946ef" />
+          <stop stopColor="#9fd8ff" />
+          <stop offset="0.5" stopColor="#00b4ff" />
+          <stop offset="1" stopColor="#1e6bff" />
         </linearGradient>
       </defs>
       {SERVICE_PATHS[name]}

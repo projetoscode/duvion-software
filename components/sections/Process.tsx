@@ -59,7 +59,7 @@ export default function Process() {
   });
 
   return (
-    <section id="sobre" ref={section} aria-labelledby="process-title" className="relative overflow-x-clip">
+    <section id="processo" ref={section} aria-labelledby="process-title" className="relative overflow-x-clip">
       <div data-panel className="section-panel relative overflow-hidden py-24 md:py-32">
         <div className="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="relative lg:col-span-4">
@@ -97,7 +97,7 @@ export default function Process() {
             <span
               data-line-fill
               aria-hidden="true"
-              className="absolute bottom-7 left-[27px] top-7 w-px origin-top bg-gradient-to-b from-cyan-300 via-blue-500 to-fuchsia-500 shadow-[0_0_12px_rgba(59,108,255,0.8)]"
+              className="absolute bottom-7 left-[27px] top-7 w-px origin-top bg-gradient-to-b from-brand-ice via-brand-sky to-brand-blue shadow-[0_0_12px_rgba(0,180,255,0.8)]"
             />
             {PROCESS_STEPS.map((step) => (
               <li key={step.number} data-step className="process-step relative flex gap-5">

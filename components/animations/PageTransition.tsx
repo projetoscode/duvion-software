@@ -181,12 +181,12 @@ export function PageTransitionProvider({ children }: { children: ReactNode }) {
       <div ref={overlay} data-intro="" className="page-transition fixed inset-0 z-[90] flex items-center justify-center" aria-hidden="true">
         <div className="absolute inset-0 bg-ink-950" />
         <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_50%,rgba(47,107,255,0.22),transparent_70%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-sky/70 to-transparent" />
         <div data-transition-mark className="relative flex flex-col items-center gap-6">
           <DMark className="h-20 w-20 drop-shadow-[0_0_30px_rgba(59,108,255,0.65)]" />
           <Wordmark />
           <span className="block h-px w-28 overflow-hidden bg-white/10">
-            <span className="block h-full w-full animate-loader-line bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500" />
+            <span className="block h-full w-full animate-loader-line bg-gradient-to-r from-brand-ice via-brand-sky to-brand-blue" />
           </span>
         </div>
       </div>

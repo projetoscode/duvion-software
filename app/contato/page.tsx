@@ -8,7 +8,7 @@ import { SocialIcon } from '@/components/ui/Icons';
 
 export const metadata: Metadata = {
   title: 'Contato',
-  description: 'Fale com a Duvion Software e transforme sua ideia em uma experiência digital.',
+  description: 'Fale com a Duvion Softwares e transforme sua ideia em uma experiência digital.',
 };
 
 export default function ContactPage() {
@@ -41,7 +41,7 @@ export default function ContactPage() {
             <div>
               <dt className="text-xs uppercase tracking-[0.25em] text-white/40">WhatsApp</dt>
               <dd className="mt-1.5">
-                <a href={SITE.whatsapp.href} target="_blank" rel="noopener noreferrer" className="text-lg text-white transition-colors hover:text-cyan-300">
+                <a href={SITE.whatsapp.href} target="_blank" rel="noopener noreferrer" className="text-lg text-white transition-colors hover:text-brand-sky">
                   {SITE.whatsapp.display}
                 </a>
               </dd>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${social.label} (abre em nova aba)`}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/60 transition-all hover:border-cyan-300/50 hover:text-white"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/60 transition-all hover:border-brand-sky/50 hover:text-white"
                   >
                     <SocialIcon name={social.icon} className="h-[18px] w-[18px]" />
                   </a>

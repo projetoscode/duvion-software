@@ -1,19 +1,30 @@
+const WHATSAPP_NUMBER = '5544998400729';
+
+/** wa.me link with a pre-filled message. */
+export function whatsappLink(message = 'Olá, Eduardo! Vim pelo site da Duvion Softwares e quero conversar sobre um projeto.') {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
 export const SITE = {
-  name: 'Duvion Software',
+  name: 'Duvion Softwares',
   shortName: 'Duvion',
   tagline: 'Tecnologia que transforma.',
   description:
-    'Na Duvion Software, desenvolvemos soluções digitais personalizadas que conectam marcas, pessoas e resultados. Sites, sistemas, aplicativos e muito mais.',
+    'Na Duvion Softwares, desenvolvemos soluções digitais personalizadas que conectam marcas, pessoas e resultados. Sites, landing pages e automações para empresas.',
   whatsapp: {
     display: '(44) 99840-0729',
-    href: 'https://wa.me/5544998400729',
+    href: `https://wa.me/${WHATSAPP_NUMBER}`,
+  },
+  instagram: {
+    handle: '@duvion_softwares',
+    href: 'https://www.instagram.com/duvion_softwares/',
   },
   author: 'Eduardo de P. Campos',
   location: 'Brasil · Atendimento remoto em todo o país',
   hours: 'Seg. a Sex. · 9h às 18h',
   social: [
-    { label: 'Instagram', href: 'https://www.instagram.com/duduu_camposs/', icon: 'instagram' },
-    { label: 'WhatsApp', href: 'https://wa.me/5544998400729', icon: 'whatsapp' },
+    { label: 'Instagram', href: 'https://www.instagram.com/duvion_softwares/', icon: 'instagram' },
+    { label: 'WhatsApp', href: `https://wa.me/${WHATSAPP_NUMBER}`, icon: 'whatsapp' },
   ],
 } as const;
 
@@ -21,59 +32,69 @@ export type SocialIconName = (typeof SITE.social)[number]['icon'];
 
 export const NAV_LINKS = [
   { label: 'Início', href: '/#inicio', section: 'inicio' },
-  { label: 'Serviços', href: '/#servicos', section: 'servicos' },
-  { label: 'Projetos', href: '/#projetos', section: 'projetos' },
   { label: 'Sobre', href: '/#sobre', section: 'sobre' },
+  { label: 'Serviços', href: '/#servicos', section: 'servicos' },
+  { label: 'Portfólio', href: '/#projetos', section: 'projetos' },
   { label: 'Contato', href: '/contato', section: 'contato' },
 ] as const;
 
-export type ServiceIconName = 'globe' | 'rocket' | 'code' | 'phone' | 'brain' | 'cart';
+export const ABOUT = {
+  paragraphs: [
+    'Sou Eduardo de P. Campos, fundador da Duvion Softwares. Crio sites, landing pages e automações para empresas que querem crescer no digital — com design que impressiona e tecnologia que funciona.',
+    'Cada projeto é feito sob medida: entendo o seu negócio, desenho a experiência e desenvolvo tudo com foco em performance, clareza e resultado. Do primeiro contato à entrega, você fala direto comigo.',
+  ],
+};
+
+export type ServiceIconName = 'globe' | 'rocket' | 'flow';
 
 export interface Service {
   id: string;
   title: string;
   description: string;
   icon: ServiceIconName;
+  features: string[];
+  /** Label of the WhatsApp link on the card. */
+  cta: string;
 }
 
 export const SERVICES: Service[] = [
   {
     id: 'sites',
-    title: 'Sites Institucionais',
+    title: 'Sites',
     description: 'Sua marca no digital com um site moderno e responsivo.',
     icon: 'globe',
+    features: ['Site institucional completo', 'Design sob medida para a sua marca', 'SEO e performance desde o início'],
+    cta: 'Quero um site',
   },
   {
     id: 'landing-pages',
     title: 'Landing Pages',
     description: 'Páginas estratégicas para transformar visitantes em clientes.',
     icon: 'rocket',
+    features: ['Estrutura pensada para conversão', 'Integração com WhatsApp e anúncios', 'Carregamento rápido no celular'],
+    cta: 'Quero uma landing page',
   },
   {
-    id: 'sistemas',
-    title: 'Sistemas Web',
-    description: 'Soluções personalizadas para sua empresa.',
-    icon: 'code',
-  },
-  {
-    id: 'aplicativos',
-    title: 'Aplicativos',
-    description: 'Experiências digitais para levar sua marca ao próximo nível.',
-    icon: 'phone',
-  },
-  {
-    id: 'ia',
-    title: 'Inteligência Artificial',
+    id: 'automacoes',
+    title: 'Automações',
     description: 'Automação e inteligência para aumentar seus resultados.',
-    icon: 'brain',
-  },
-  {
-    id: 'ecommerce',
-    title: 'E-commerce',
-    description: 'Sua loja online, do jeito que você precisa.',
-    icon: 'cart',
+    icon: 'flow',
+    features: ['Atendimento automático no WhatsApp', 'Agendamento online integrado', 'Bots de orçamento que respondem na hora'],
+    cta: 'Quero automatizar',
   },
 ];
+
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+}
+
+/**
+ * Depoimentos reais de clientes. A seção só aparece no site quando houver itens aqui —
+ * nunca publique depoimentos inventados.
+ */
+export const TESTIMONIALS: Testimonial[] = [];
 
 export interface Project {
   slug: string;
@@ -254,4 +275,11 @@ export const PROCESS_STEPS = [
     title: 'Entrega',
     description: 'Testamos, otimizamos e colocamos seu projeto no ar — e seguimos ao seu lado.',
   },
+];
+
+/** Numbers shown in the "Sobre" counters — derived from the real data above. */
+export const STATS = [
+  { value: PROJECTS.length, suffix: '', label: 'Projetos entregues' },
+  { value: new Set(PROJECTS.map((p) => p.segment)).size, suffix: '', label: 'Segmentos atendidos' },
+  { value: 100, suffix: '%', label: 'Sites responsivos' },
 ];

@@ -45,7 +45,7 @@ export default function ContactForm() {
 
     const serviceLabel = SERVICES.find((s) => s.id === service)?.title;
     const body = [
-      `Olá! Vim pelo site da Duvion Software.`,
+      `Olá! Vim pelo site da Duvion Softwares.`,
       '',
       `Nome: ${name}`,
       `E-mail: ${email}`,
@@ -68,7 +68,7 @@ export default function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="nome" className="mb-2 block text-sm text-white/70">
-            Nome <span aria-hidden="true" className="text-cyan-300">*</span>
+            Nome <span aria-hidden="true" className="text-brand-sky">*</span>
           </label>
           <input id="nome" name="nome" autoComplete="name" required className="form-field" aria-invalid={Boolean(errors.nome)} aria-describedby={describedBy('nome')} />
           {errors.nome && (
@@ -79,7 +79,7 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="email" className="mb-2 block text-sm text-white/70">
-            E-mail <span aria-hidden="true" className="text-cyan-300">*</span>
+            E-mail <span aria-hidden="true" className="text-brand-sky">*</span>
           </label>
           <input
             id="email"
@@ -121,9 +121,9 @@ export default function ContactForm() {
               />
               <span
                 className={cn(
-                  'inline-flex rounded-full border px-4 py-2 text-sm transition-all duration-300 peer-focus-visible:ring-2 peer-focus-visible:ring-cyan-300',
+                  'inline-flex rounded-full border px-4 py-2 text-sm transition-all duration-300 peer-focus-visible:ring-2 peer-focus-visible:ring-brand-sky',
                   service === item.id
-                    ? 'border-cyan-300/70 bg-cyan-300/10 text-white shadow-[0_0_20px_-6px_rgba(34,211,238,0.7)]'
+                    ? 'border-brand-sky/70 bg-brand-sky/10 text-white shadow-[0_0_20px_-6px_rgba(0,180,255,0.7)]'
                     : 'border-white/10 bg-white/[0.03] text-white/65 hover:border-white/25 hover:text-white',
                 )}
               >
@@ -136,7 +136,7 @@ export default function ContactForm() {
 
       <div>
         <label htmlFor="mensagem" className="mb-2 block text-sm text-white/70">
-          Sobre o projeto <span aria-hidden="true" className="text-cyan-300">*</span>
+          Sobre o projeto <span aria-hidden="true" className="text-brand-sky">*</span>
         </label>
         <textarea
           id="mensagem"

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import type { Tier } from '@/lib/three';
+import type { Tier } from '@/lib/device';
 import { useInView } from '@/hooks/useInView';
 import { useDeviceTier } from '@/hooks/useDeviceTier';
 

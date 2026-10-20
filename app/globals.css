@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------ */
+/* Tokens — azul elétrico sobre preto profundo                         */
+/* ------------------------------------------------------------------ */
 :root {
-  --ink: #03040b;
-  --grad-brand: linear-gradient(95deg, #22d3ee 0%, #3b82f6 38%, #8b5cf6 72%, #d946ef 100%);
+  --ink: #05070d;
+  --ink-2: #080c16;
+  --navy: #0a1a3a;
+  --blue: #1e6bff;
+  --sky: #00b4ff;
+  --ice: #9fd8ff;
+  --grad-brand: linear-gradient(95deg, #b8e6ff 0%, #00b4ff 38%, #1e6bff 100%);
+  --glow: 0 0 24px rgba(30, 107, 255, 0.55), 0 0 60px -10px rgba(0, 180, 255, 0.45);
   color-scheme: dark;
 }
 
@@ -38,12 +47,12 @@ html.lenis body {
   }
 
   ::selection {
-    background: rgba(59, 130, 246, 0.45);
+    background: rgba(30, 107, 255, 0.5);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid #22d3ee;
+    outline: 2px solid var(--sky);
     outline-offset: 3px;
     border-radius: 8px;
   }
@@ -74,31 +83,30 @@ html.lenis body {
     color: transparent;
   }
 
-  /* Frosted look without backdrop-filter: blurring the live WebGL canvas behind dozens of
-     cards every frame was the main cause of scroll jank. A tinted gradient reads the same. */
+  /* Vidro escuro sem backdrop-filter (desfocar conteúdo animado a cada quadro pesa muito). */
   .glass {
-    background: linear-gradient(160deg, rgba(22, 28, 64, 0.62), rgba(9, 11, 28, 0.72));
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(160deg, rgba(14, 30, 66, 0.55), rgba(6, 10, 22, 0.78));
+    border: 1px solid rgba(120, 180, 255, 0.12);
     box-shadow:
-      0 20px 60px -30px rgba(59, 108, 255, 0.45),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      0 24px 60px -32px rgba(30, 107, 255, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
-  /* Subtle gradient border drawn with a masked pseudo element. */
+  /* Borda em degradê azul desenhada com um pseudo-elemento mascarado. */
   .gradient-border::before {
     content: '';
     position: absolute;
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(140deg, rgba(34, 211, 238, 0.55), rgba(59, 130, 246, 0.12) 32%, rgba(139, 92, 246, 0.1) 62%, rgba(217, 70, 239, 0.5));
+    background: linear-gradient(140deg, rgba(0, 180, 255, 0.6), rgba(30, 107, 255, 0.08) 40%, rgba(30, 107, 255, 0.08) 60%, rgba(0, 180, 255, 0.45));
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-    opacity: 0.55;
+    opacity: 0.6;
     transition: opacity 0.5s ease;
   }
 
@@ -107,24 +115,31 @@ html.lenis body {
     align-items: center;
     gap: 0.55rem;
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-    padding: 0.4rem 0.85rem;
+    border: 1px solid rgba(0, 180, 255, 0.22);
+    background: rgba(10, 26, 58, 0.55);
+    padding: 0.42rem 0.9rem;
     font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.32em;
-    color: rgba(165, 243, 252, 0.9);
+    color: var(--ice);
   }
 
   .section-panel {
     background:
-      radial-gradient(60% 40% at 85% 0%, rgba(59, 108, 255, 0.1), transparent 70%),
-      linear-gradient(180deg, rgba(5, 7, 20, 0.9), rgba(4, 5, 14, 0.82));
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+      radial-gradient(60% 40% at 85% 0%, rgba(30, 107, 255, 0.1), transparent 70%),
+      linear-gradient(180deg, rgba(8, 12, 22, 0.62), rgba(5, 7, 13, 0.5));
+    border-top: 1px solid rgba(120, 180, 255, 0.07);
   }
 
-  /* Buttons */
+  .eyebrow-line {
+    display: inline-block;
+    height: 1px;
+    width: 2.5rem;
+    background: linear-gradient(90deg, transparent, var(--sky));
+  }
+
+  /* Botões */
   .btn {
     position: relative;
     display: inline-flex;
@@ -151,37 +166,38 @@ html.lenis body {
   }
   .btn-primary {
     color: #fff;
-    background-image: linear-gradient(95deg, #06b6d4 0%, #3b82f6 40%, #8b5cf6 72%, #d946ef 100%);
+    background-image: linear-gradient(100deg, #00b4ff 0%, #1e6bff 55%, #1a4fd8 100%);
     background-size: 170% 100%;
     background-position: 0% 50%;
     box-shadow:
-      0 12px 40px -12px rgba(56, 189, 248, 0.65),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 0 0 1px rgba(160, 215, 255, 0.25) inset,
+      0 14px 40px -12px rgba(0, 180, 255, 0.75),
+      0 0 28px -4px rgba(30, 107, 255, 0.6);
   }
   .btn-primary:hover {
     background-position: 100% 50%;
     box-shadow:
-      0 18px 50px -10px rgba(139, 92, 246, 0.75),
-      0 0 0 1px rgba(255, 255, 255, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 0 0 1px rgba(190, 230, 255, 0.4) inset,
+      0 18px 50px -10px rgba(0, 180, 255, 0.85),
+      0 0 46px -2px rgba(30, 107, 255, 0.8);
   }
   .btn-outline {
     color: #fff;
-    border: 1px solid rgba(139, 92, 246, 0.5);
-    background: rgba(10, 12, 30, 0.45);
+    border: 1px solid rgba(0, 180, 255, 0.45);
+    background: rgba(10, 26, 58, 0.45);
   }
   .btn-outline:hover {
-    border-color: rgba(34, 211, 238, 0.7);
-    box-shadow: 0 0 30px -6px rgba(34, 211, 238, 0.5);
+    border-color: rgba(0, 180, 255, 0.9);
+    box-shadow: 0 0 30px -6px rgba(0, 180, 255, 0.6);
   }
   .btn-ghost {
     color: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.03);
   }
   .btn-ghost:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(0, 180, 255, 0.5);
+    background: rgba(30, 107, 255, 0.08);
   }
   .btn-ripple {
     position: absolute;
@@ -197,7 +213,7 @@ html.lenis body {
     gap: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: rgb(125 211 252);
+    color: var(--ice);
     transition:
       gap 0.4s cubic-bezier(0.16, 1, 0.3, 1),
       color 0.3s ease;
@@ -223,6 +239,7 @@ html.lenis body {
     bottom: 0.15rem;
     height: 1px;
     background: var(--grad-brand);
+    box-shadow: 0 0 8px var(--sky);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -237,10 +254,10 @@ html.lenis body {
     transform-origin: left;
   }
 
-  /* Tilt cards */
+  /* Cards com tilt 3D */
   .tilt-glow {
     opacity: 0;
-    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(56, 189, 248, 0.16), rgba(139, 92, 246, 0.08) 35%, transparent 60%);
+    background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(0, 180, 255, 0.18), rgba(30, 107, 255, 0.07) 38%, transparent 62%);
     transition: opacity 0.5s ease;
   }
   .tilt-card[data-tilt-active] .tilt-glow {
@@ -251,7 +268,7 @@ html.lenis body {
     opacity: 1;
   }
   .tilt-card[data-tilt-active] {
-    box-shadow: 0 30px 80px -30px rgba(59, 108, 255, 0.55);
+    box-shadow: 0 30px 80px -30px rgba(30, 107, 255, 0.65);
   }
 
   .icon-box {
@@ -261,46 +278,12 @@ html.lenis body {
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: linear-gradient(145deg, rgba(34, 211, 238, 0.1), rgba(139, 92, 246, 0.08));
-    box-shadow: 0 0 30px -8px rgba(59, 130, 246, 0.6);
+    border: 1px solid rgba(0, 180, 255, 0.25);
+    background: linear-gradient(145deg, rgba(0, 180, 255, 0.14), rgba(30, 107, 255, 0.06));
+    box-shadow: 0 0 30px -8px rgba(0, 180, 255, 0.7);
   }
 
-  .carousel-btn {
-    display: flex;
-    height: 3rem;
-    width: 3rem;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.03);
-    color: #fff;
-    transition: all 0.4s ease;
-  }
-  .carousel-btn:hover:not(:disabled) {
-    border-color: rgba(34, 211, 238, 0.6);
-    box-shadow: 0 0 24px -4px rgba(34, 211, 238, 0.5);
-  }
-  .carousel-btn:disabled {
-    opacity: 0.3;
-  }
-
-  .project-slide {
-    flex: 0 0 88%;
-  }
-  @media (min-width: 640px) {
-    .project-slide {
-      flex-basis: calc((100% - 1.25rem) / 2);
-    }
-  }
-  @media (min-width: 1024px) {
-    .project-slide {
-      flex-basis: calc((100% - 2 * 1.25rem) / 3);
-    }
-  }
-
-  /* Process steps */
+  /* Etapas do processo */
   .process-step .step-dot {
     transition:
       border-color 0.6s ease,
@@ -310,18 +293,18 @@ html.lenis body {
   }
   .process-step.is-active .step-dot {
     color: #fff;
-    border-color: rgba(34, 211, 238, 0.8);
-    background: radial-gradient(circle at 30% 30%, rgba(59, 108, 255, 0.45), #060816 70%);
+    border-color: rgba(0, 180, 255, 0.9);
+    background: radial-gradient(circle at 30% 30%, rgba(30, 107, 255, 0.5), var(--ink-2) 70%);
     box-shadow:
-      0 0 0 6px rgba(59, 108, 255, 0.08),
-      0 0 30px -4px rgba(34, 211, 238, 0.7);
+      0 0 0 6px rgba(30, 107, 255, 0.1),
+      0 0 30px -4px rgba(0, 180, 255, 0.8);
   }
 
   .form-field {
     width: 100%;
     border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(120, 180, 255, 0.14);
+    background: rgba(10, 26, 58, 0.35);
     padding: 0.9rem 1.1rem;
     font-size: 0.95rem;
     color: #fff;
@@ -335,12 +318,12 @@ html.lenis body {
   }
   .form-field:focus {
     outline: none;
-    border-color: rgba(34, 211, 238, 0.7);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.12);
+    border-color: rgba(0, 180, 255, 0.8);
+    background: rgba(10, 26, 58, 0.55);
+    box-shadow: 0 0 0 4px rgba(0, 180, 255, 0.14);
   }
   .form-field[aria-invalid='true'] {
-    border-color: rgba(244, 114, 182, 0.8);
+    border-color: rgba(255, 120, 140, 0.85);
   }
 }
 
@@ -353,13 +336,96 @@ html.lenis body {
   }
 }
 
-/* Fallback background shown before (or instead of) WebGL. */
-.bg-fallback {
-  background:
-    radial-gradient(45% 40% at 10% 40%, rgba(23, 51, 184, 0.35), transparent 70%),
-    radial-gradient(40% 45% at 90% 70%, rgba(74, 26, 158, 0.35), transparent 70%),
-    var(--ink);
+/* ------------------------------------------------------------------ */
+/* Hero                                                                 */
+/* ------------------------------------------------------------------ */
+
+/* Foto recortada: rim light azul contornando a silhueta + máscara que dissolve
+   ombros e base no fundo (a foto não tem fundo, então o contorno segue o cabelo). */
+.hero-photo {
+  filter: drop-shadow(0 0 2px rgba(170, 220, 255, 1)) drop-shadow(0 0 12px rgba(0, 170, 255, 0.75))
+    drop-shadow(0 0 44px rgba(30, 107, 255, 0.5));
 }
+.hero-photo-mask {
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 96%), linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 60%, transparent 96%), linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  mask-composite: intersect;
+}
+
+/* Palavra gigante atrás da foto. */
+.hero-word {
+  background: linear-gradient(180deg, rgba(190, 228, 255, 0.95) 0%, rgba(60, 140, 255, 0.55) 55%, rgba(30, 107, 255, 0.05) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 30px rgba(30, 107, 255, 0.35));
+}
+
+/* Revelação por máscara: o conteúdo sobe de dentro de uma "janela" com overflow oculto. */
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.scroll-cue {
+  position: relative;
+  height: 3rem;
+  width: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+}
+.scroll-cue::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--sky));
+  box-shadow: 0 0 10px var(--sky);
+  animation: scroll-cue 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Portfólio horizontal                                                 */
+/* ------------------------------------------------------------------ */
+.portfolio-card {
+  flex: 0 0 84vw;
+}
+@media (min-width: 768px) {
+  .portfolio-card {
+    flex-basis: min(46vw, 560px);
+  }
+}
+@media (min-width: 1280px) {
+  .portfolio-card {
+    flex-basis: 580px;
+  }
+}
+.portfolio-media {
+  aspect-ratio: 16 / 10;
+}
+/* Short laptop screens: the pinned section has to fit in one viewport. */
+@media (min-width: 768px) and (max-height: 820px) {
+  .portfolio-card {
+    flex-basis: min(40vw, 470px);
+  }
+  .portfolio-media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Globais                                                              */
+/* ------------------------------------------------------------------ */
 
 /* Skip link */
 .skip-link {
@@ -380,7 +446,7 @@ html.lenis body {
   transform: translateY(0);
 }
 
-/* Page transition overlay */
+/* Overlay de transição de página */
 .page-transition {
   visibility: hidden;
   clip-path: inset(100% 0% 0% 0%);
@@ -390,14 +456,15 @@ html.js .page-transition[data-intro] {
   clip-path: inset(0% 0% 0% 0%);
 }
 
-/* Sections whose scale is scrubbed by scroll. Without will-change, Chrome re-rasterizes
-   them at every new scale; with it, the existing texture is reused. Kept to these few. */
+/* Elementos com escala animada pelo scroll: will-change evita re-rasterizar a cada quadro. */
 [data-panel],
-[data-hero-content] {
+[data-hero-content],
+[data-hero-photo],
+[data-hero-word] {
   will-change: transform;
 }
 
-/* Elements animated in by JS start hidden (only when JS is running). */
+/* Elementos que o JS anima começam ocultos (só quando o JS está rodando). */
 html.js [data-kinetic-word],
 html.js [data-reveal],
 html.js [data-hero-fade],
@@ -406,8 +473,12 @@ html.js [data-slide],
 html.js [data-step] {
   opacity: 0;
 }
+html.js [data-hero-letter],
+html.js [data-hero-line] {
+  transform: translateY(110%);
+}
 
-/* Custom cursor */
+/* Cursor customizado (círculo azul) */
 html.has-custom-cursor,
 html.has-custom-cursor * {
   cursor: none !important;
@@ -428,13 +499,13 @@ html.has-custom-cursor * {
   border-radius: 9999px;
   background: #fff;
   box-shadow:
-    0 0 10px #22d3ee,
-    0 0 20px rgba(34, 211, 238, 0.6);
+    0 0 10px var(--sky),
+    0 0 20px rgba(0, 180, 255, 0.7);
 }
 .cursor-trail {
   border-radius: 9999px;
-  background: #60a5fa;
-  box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+  background: var(--sky);
+  box-shadow: 0 0 8px rgba(0, 180, 255, 0.8);
 }
 .cursor-ring-anchor {
   width: 0;
@@ -450,7 +521,8 @@ html.has-custom-cursor * {
   width: 38px;
   height: 38px;
   border-radius: 9999px;
-  border: 1px solid rgba(165, 243, 252, 0.55);
+  border: 1.5px solid rgba(0, 180, 255, 0.75);
+  box-shadow: 0 0 14px rgba(0, 180, 255, 0.35);
   transform: translate(-50%, -50%);
   transition:
     width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -461,14 +533,14 @@ html.has-custom-cursor * {
 .cursor-ring.is-hovering {
   width: 64px;
   height: 64px;
-  border-color: rgba(139, 92, 246, 0.8);
-  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(0, 180, 255, 0.95);
+  background: rgba(30, 107, 255, 0.12);
 }
 .cursor-ring.has-label {
   width: 78px;
   height: 78px;
   border-color: transparent;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.9), rgba(139, 92, 246, 0.9));
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.95), rgba(30, 107, 255, 0.95));
 }
 .cursor-label {
   font-size: 11px;
@@ -480,23 +552,28 @@ html.has-custom-cursor * {
   width: 380px;
   height: 380px;
   border-radius: 9999px;
-  background: radial-gradient(circle, rgba(59, 108, 255, 0.12), transparent 65%);
+  background: radial-gradient(circle, rgba(30, 107, 255, 0.13), transparent 65%);
 }
 
-/* Reduced motion: show everything immediately and calm transitions down. */
+/* prefers-reduced-motion: mostra tudo de imediato e acalma as transições. */
 @media (prefers-reduced-motion: reduce) {
   html.js [data-kinetic-word],
   html.js [data-reveal],
   html.js [data-hero-fade],
   html.js [data-stagger-item],
   html.js [data-slide],
-  html.js [data-step] {
+  html.js [data-step],
+  html.js [data-hero-letter],
+  html.js [data-hero-line] {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
   }
   html.js .page-transition[data-intro] {
     visibility: hidden;
+  }
+  .scroll-cue::after {
+    animation: none;
   }
   *,
   *::before,

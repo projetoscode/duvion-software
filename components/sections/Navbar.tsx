@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { NAV_LINKS, SITE } from '@/lib/site';
+import { NAV_LINKS, SITE, whatsappLink } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import { useLenis } from '@/components/providers/SmoothScroll';
 import { TransitionLink } from '@/components/animations/PageTransition';
@@ -94,7 +94,7 @@ export default function Navbar() {
         )}
       >
         <div className="container-x flex h-[72px] items-center justify-between md:h-20">
-          <TransitionLink href="/#inicio" aria-label="Duvion Software — página inicial" className="rounded-md">
+          <TransitionLink href="/#inicio" aria-label="Duvion Softwares — página inicial" className="rounded-md">
             <Wordmark />
           </TransitionLink>
 
@@ -118,8 +118,9 @@ export default function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <MagneticButton href="/contato" variant="outline" className="!px-5 !py-2.5 text-[13px]">
-              Fale conosco
+            <MagneticButton href={whatsappLink()} external icon={false} className="!px-5 !py-2.5 text-[13px]">
+              <SocialIcon name="whatsapp" className="h-4 w-4" />
+              WhatsApp
             </MagneticButton>
           </div>
 
@@ -130,7 +131,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-            className="flex items-center gap-2.5 rounded-full border border-violet-400/40 bg-ink-900/80 py-2 pl-4 pr-3 text-[13px] text-white/90 md:hidden"
+            className="flex items-center gap-2.5 rounded-full border border-brand-sky/40 bg-ink-900/80 py-2 pl-4 pr-3 text-[13px] text-white/90 md:hidden"
           >
             {open ? 'Fechar' : 'Menu'}
             <MenuIcon open={open} className="h-5 w-5" />
@@ -168,7 +169,7 @@ export default function Navbar() {
                       onClick={() => setOpen(false)}
                       className="group flex items-baseline gap-4 py-2 font-display text-4xl font-semibold tracking-tight text-white/90"
                     >
-                      <span className="text-xs font-medium text-cyan-300/70">0{index + 1}</span>
+                      <span className="text-xs font-medium text-brand-sky/80">0{index + 1}</span>
                       <span className="transition-colors group-hover:text-gradient">{link.label}</span>
                     </TransitionLink>
                   </motion.li>
@@ -182,8 +183,9 @@ export default function Navbar() {
               transition={{ delay: reduced ? 0 : 0.55 }}
               className="relative space-y-6"
             >
-              <MagneticButton href="/contato" onClick={() => setOpen(false)} fullWidth>
-                Fale conosco
+              <MagneticButton href={whatsappLink()} external icon={false} onClick={() => setOpen(false)} fullWidth>
+                <SocialIcon name="whatsapp" className="h-[18px] w-[18px]" />
+                Falar no WhatsApp
               </MagneticButton>
               <div className="flex items-center justify-between text-sm text-white/50">
                 <a href={SITE.whatsapp.href} target="_blank" rel="noopener noreferrer" className="hover:text-white">

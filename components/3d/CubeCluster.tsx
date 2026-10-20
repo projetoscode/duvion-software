@@ -35,12 +35,12 @@ export default function CubeCluster({ progressRef }: { progressRef: MutableRefOb
   const material = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: '#2f5bff',
+        color: '#1e6bff',
         metalness: 0.2,
         roughness: 0.08,
         transparent: true,
         opacity: 0.5,
-        emissive: new THREE.Color('#2b3cff'),
+        emissive: new THREE.Color('#0a3aa8'),
         emissiveIntensity: 0.4,
         envMapIntensity: 2.2,
         depthWrite: false,
@@ -96,11 +96,11 @@ export default function CubeCluster({ progressRef }: { progressRef: MutableRefOb
         <meshBasicMaterial color="#9fe8ff" toneMapped={false} />
       </mesh>
       <sprite scale={[3.2, 3.2, 1]}>
-        <spriteMaterial map={texture} color="#3b6cff" transparent opacity={0.8} depthWrite={false} blending={THREE.AdditiveBlending} toneMapped={false} />
+        <spriteMaterial map={texture} color="#1e6bff" transparent opacity={0.8} depthWrite={false} blending={THREE.AdditiveBlending} toneMapped={false} />
       </sprite>
       <mesh rotation={[1.2, 0.3, 0]}>
         <torusGeometry args={[2.2, 0.008, 8, 160]} />
-        <meshBasicMaterial color="#7aa8ff" transparent opacity={0.45} toneMapped={false} />
+        <meshBasicMaterial color="#5cc8ff" transparent opacity={0.45} toneMapped={false} />
       </mesh>
     </group>
   );

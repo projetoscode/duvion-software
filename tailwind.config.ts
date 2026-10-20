@@ -6,22 +6,22 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          950: '#03040b',
-          900: '#060816',
-          800: '#0a0e22',
-          700: '#11163a',
+          950: '#05070d',
+          900: '#080c16',
+          800: '#0a1a3a',
+          700: '#10264f',
         },
         brand: {
-          cyan: '#22d3ee',
-          blue: '#3b6cff',
-          violet: '#8b5cf6',
-          magenta: '#d946ef',
+          blue: '#1e6bff',
+          sky: '#00b4ff',
+          navy: '#0a1a3a',
+          ice: '#9fd8ff',
         },
       },
       fontFamily: {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
         body: ['var(--font-body)', 'system-ui', 'sans-serif'],
-        brand: ['var(--font-brand)', 'var(--font-display)', 'sans-serif'],
+        brand: ['var(--font-display)', 'sans-serif'],
       },
       transitionTimingFunction: {
         expo: 'cubic-bezier(0.16, 1, 0.3, 1)',

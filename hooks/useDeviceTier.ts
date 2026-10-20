@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { detectTier, type Tier } from '@/lib/three';
+import { detectTier, type Tier } from '@/lib/device';
 
 /** Returns null during SSR / first paint, then the device tier (updated on resize). */
 export function useDeviceTier() {

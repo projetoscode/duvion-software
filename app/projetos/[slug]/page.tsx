@@ -106,7 +106,7 @@ export default async function ProjectPage({ params }: Params) {
         <section aria-label="Estudo de caso" className="mt-20 grid gap-5 md:grid-cols-3">
           {story.map((item, i) => (
             <Reveal key={item.label} delay={i * 0.1} className="glass gradient-border relative rounded-3xl p-7">
-              <p className="text-xs tracking-[0.25em] text-cyan-300/80">0{i + 1}</p>
+              <p className="text-xs tracking-[0.25em] text-brand-sky/80">0{i + 1}</p>
               <h2 className="mt-4 font-display text-xl font-semibold">{item.label}</h2>
               <p className="mt-3 text-sm leading-relaxed text-white/65">{item.text}</p>
             </Reveal>
